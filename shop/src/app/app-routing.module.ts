@@ -1,11 +1,20 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { ProductComponent } from './products/product.component';
+import { PageNotFoundComponent } from './page-not-found.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: '/products', pathMatch: 'full' },
   {
-    path: '',
-    children: []
-  }
+    path: 'products',
+    component: ProductComponent,
+    data: { title: 'Product List' }
+  },
+  {
+    path: 'products/:id', component: ProductComponent,
+    data: { title: 'Product' }
+  },
+  { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({
