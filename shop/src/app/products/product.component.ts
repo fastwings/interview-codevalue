@@ -3,18 +3,19 @@ import 'rxjs/add/operator/switchMap';
 import { Observable } from 'rxjs/Observable';
 import { Product } from "../models/product";
 import { ProductService } from '../services/product.service';
-import { ActivatedRoute, Router, ParamMap } from "@angular/router/router";
+import { ActivatedRoute, Router, ParamMap } from "@angular/router";
 
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
-  styleUrls: ['./product.component.scss']
+  styleUrls: ['./product.component.scss'],
+  providers: [ProductService]
 })
 export class ProductComponent implements OnInit {
-  products: Observable<Product[]>;
+  products: Array<Product>;
 
   private selectedId: number;
-
+  private sub;
   constructor(
     private service: ProductService,
     private route: ActivatedRoute,
@@ -22,14 +23,20 @@ export class ProductComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.products = this.route.paramMap
-      .switchMap((params: ParamMap) => {
-        // (+) before `params.get()` turns the string into a number
-        if (params.get('id')) {
-          this.selectedId = +params.get('id');
-        }
-        return this.service.getProducts();
-      });
+    this.updateProducts();
+    this.sub = this.route.queryParams.subscribe(params => {
+      // (+) before `params.get()` turns the string into a number
+      if (params['id']) {
+        this.selectedId = +params['id'];
+      }
+    });
+  }
+  updateProducts() {
+    this.products = [];
+    this.service.getProducts().subscribe(data => {
+      this.products = data;
+    });
+
   }
 
 }

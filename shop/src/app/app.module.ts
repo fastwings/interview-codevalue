@@ -4,13 +4,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ListComponent } from './products/list/list.component';
 import { ItemComponent } from './products/item/item.component';
 import { ProductComponent } from './products/product.component';
 import { PageNotFoundComponent } from './page-not-found.component';
+import { MdCardModule, MdButtonModule, MdCheckboxModule, MdListModule, MdGridListModule } from '@angular/material';
 @NgModule({
   declarations: [
-    ListComponent,
     ItemComponent,
     ProductComponent,
     PageNotFoundComponent
@@ -20,6 +19,11 @@ import { PageNotFoundComponent } from './page-not-found.component';
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpModule,
+    MdCardModule,
+    MdButtonModule,
+    MdGridListModule,
+    MdCheckboxModule,
+    MdListModule,
     NgbModule.forRoot()
   ],
   providers: [],

@@ -17,7 +17,7 @@ export class ProductService extends CommonServer {
   }
   getProducts() {
     return this.Request(RequestMethod.GET, this.uri, {}).map(items => {
-      return _.map(items => item => {
+      return _.map(items, item => {
         return new Product(item.id, item.name, item.description, item.price, item.image, item.createAt);
       })
 

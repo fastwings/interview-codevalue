@@ -1,3 +1,17 @@
-<p>
-  item works!
-</p>
+<div>
+    <md-card>
+        <md-card-header>
+            <md-card-title>{{product.Name}} - <small>( {{product.Price| currency:'USD':true}} )</small></md-card-title>
+            <md-card-subtitle>{{product.CreatedAt}}</md-card-subtitle>
+        </md-card-header>
+        <md-card-content>
+            <p>
+                {{product.Description}}
+            </p>
+        </md-card-content>
+        <md-card-actions>
+            <button md-button>LIKE</button>
+            <button md-button>SHARE</button>
+        </md-card-actions>
+    </md-card>
+</div>
