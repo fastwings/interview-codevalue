@@ -8,10 +8,13 @@ import { Product } from "../../models/product";
 export class ItemComponent implements OnInit {
   @Input()
   public product: Product;
-
+  @Output()
+  public OnSelectProduct = new EventEmitter();
   constructor() { }
 
   ngOnInit() {
   }
-
+  onProductClick(selectedProduct) {
+    this.OnSelectProduct.emit(selectedProduct);
+  }
 }

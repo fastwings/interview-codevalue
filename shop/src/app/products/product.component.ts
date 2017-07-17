@@ -14,7 +14,7 @@ import { ActivatedRoute, Router, ParamMap } from "@angular/router";
 export class ProductComponent implements OnInit {
   products: Array<Product>;
 
-  private selectedId: number;
+  private selectedProduct: Product;
   private sub;
   constructor(
     private service: ProductService,
@@ -26,10 +26,15 @@ export class ProductComponent implements OnInit {
     this.updateProducts();
     this.sub = this.route.queryParams.subscribe(params => {
       // (+) before `params.get()` turns the string into a number
-      if (params['id']) {
-        this.selectedId = +params['id'];
+      if (params['id'] && +params['id'] != 0) {
+        this.service.getProduct(+params['id']).subscribe(data => {
+          this.selectedProduct = data;
+        })
       }
     });
+  }
+  onSelectedProduct(selectProduct) {
+    this.selectedProduct = selectProduct;
   }
   updateProducts() {
     this.products = [];

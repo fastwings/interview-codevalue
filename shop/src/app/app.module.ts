@@ -8,11 +8,13 @@ import { ItemComponent } from './products/item/item.component';
 import { ProductComponent } from './products/product.component';
 import { PageNotFoundComponent } from './page-not-found.component';
 import { MdCardModule, MdButtonModule, MdCheckboxModule, MdListModule, MdGridListModule } from '@angular/material';
+import { ShowComponent } from './products/show/show.component';
 @NgModule({
   declarations: [
     ItemComponent,
     ProductComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    ShowComponent
   ],
   imports: [
     BrowserModule,

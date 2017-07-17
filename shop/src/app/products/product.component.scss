@@ -1,10 +1,19 @@
-.container {
+.productZone {
     margin: 60px auto;
-    h1 {
-        margin: 20px auto;
+    .container {
+        margin: 60px auto;
+        h1 {
+            margin: 20px auto;
+        }
+        ul {
+            list-style-type: none;
+            height: 340px;
+            overflow: auto;
+        }
     }
-    .mat-list {
-        height: 340px;
-        overflow: auto;
-    }
+}
+
+.topContiner {
+    vertical-align: text-top;
+    margin: 20px auto;
 }

@@ -1,20 +1,32 @@
-<nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse fixed-top">
-    <span class="navbar-brand" href="#">Shop</span>
-</nav>
-<md-grid-list cols="2" rowHeight="1:1">
-    <md-grid-tile>1</md-grid-tile>
-    <div class="container">
-        <div class="starter-template">
-            <h1 *ngIf="!selectedId">Product List</h1>
-            <h1 *ngIf="selectedId">Product #{{selectedId}}</h1>
+<header>
+    <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse fixed-top">
+        <span class="navbar-brand" href="#">Shop</span>
+    </nav>
+</header>
+<div class="productZone">
 
-        </div>
-        <app-item *ngFor="let item of products" [product]="item"></app-item>
+    <md-grid-list cols="2" rowHeight="2:1">
+        <md-grid-tile>
+            <div class="container">
+                <div class="starter-template">
+                    <h1 *ngIf="!selectedId">Product List</h1>
+                    <h1 *ngIf="selectedId">Product #{{selectedId}}</h1>
 
-    </div>
-
-    <md-grid-tile>2</md-grid-tile>
-</md-grid-list>
+                </div>
+                <ul>
+                    <li *ngFor="let item of products">
+                        <app-item [product]="item" (OnSelectProduct)="onSelectedProduct($event)"></app-item>
+                    </li>
+                </ul>
+            </div>
+        </md-grid-tile>
+        <md-grid-tile>
+            <div class="topContiner">
+                <app-show [product]="selectedProduct"></app-show>
+            </div>
+        </md-grid-tile>
+    </md-grid-list>
+</div>
 <!-- /.container -->
 
 <footer class="footer">
