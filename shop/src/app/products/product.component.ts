@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 import 'rxjs/add/operator/switchMap';
 import { Observable } from 'rxjs/Observable';
@@ -15,6 +16,7 @@ export class ProductComponent implements OnInit {
   products: Array<Product>;
 
   private selectedProduct: Product;
+  private productId;
   private sub;
   constructor(
     private service: ProductService,
@@ -27,7 +29,8 @@ export class ProductComponent implements OnInit {
     this.sub = this.route.params.subscribe(params => {
       // (+) before `params.get()` turns the string into a number
       if (params['id'] && +params['id'] != 0) {
-        this.service.getProduct(+params['id']).subscribe(data => {
+        this.productId = +params['id'];
+        this.service.getProduct(this.productId).subscribe(data => {
           this.selectedProduct = data;
         })
       }
@@ -37,8 +40,24 @@ export class ProductComponent implements OnInit {
     this.selectedProduct = selectProduct;
   }
 
+  onDeleteProduct(product) {
+    this.service.deleteProduct(product.Id).subscribe(data => {
+      console.log(data);
+
+      this.updateProducts();
+      if (product.Id == this.productId) {
+        this.productId = null;
+        this.selectedProduct = null;
+      }
+    })
+  }
   onUpdate() {
     this.updateProducts();
+    if (this.selectedProduct) {
+      this.service.getProduct(this.productId).subscribe(data => {
+        this.selectedProduct = data;
+      })
+    }
   }
 
   updateProducts() {
