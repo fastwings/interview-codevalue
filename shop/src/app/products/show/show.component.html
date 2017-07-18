@@ -9,6 +9,9 @@
                 {{product.Description}}
             </p>
         </md-card-content>
+        <md-card-actions>
+            <button md-raised-button (click)="onEditProduct()">Edit</button>
+        </md-card-actions>
     </md-card>
 </div>
 <div *ngIf="!product">

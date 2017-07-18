@@ -24,7 +24,7 @@ export class ProductComponent implements OnInit {
 
   ngOnInit() {
     this.updateProducts();
-    this.sub = this.route.queryParams.subscribe(params => {
+    this.sub = this.route.params.subscribe(params => {
       // (+) before `params.get()` turns the string into a number
       if (params['id'] && +params['id'] != 0) {
         this.service.getProduct(+params['id']).subscribe(data => {
@@ -36,6 +36,11 @@ export class ProductComponent implements OnInit {
   onSelectedProduct(selectProduct) {
     this.selectedProduct = selectProduct;
   }
+
+  onUpdate() {
+    this.updateProducts();
+  }
+
   updateProducts() {
     this.products = [];
     this.service.getProducts().subscribe(data => {

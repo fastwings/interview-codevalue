@@ -7,28 +7,41 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ItemComponent } from './products/item/item.component';
 import { ProductComponent } from './products/product.component';
 import { PageNotFoundComponent } from './page-not-found.component';
-import { MdCardModule, MdButtonModule, MdCheckboxModule, MdListModule, MdGridListModule } from '@angular/material';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MdDialogModule, MdCardModule, MdButtonModule, MdCheckboxModule, MdListModule, MdGridListModule, MdInputModule } from '@angular/material';
 import { ShowComponent } from './products/show/show.component';
+import { RootComponent } from './root/root.component';
+import { FormComponent } from './products/form/form.component';
+import { AddComponent } from './products/form/add.component';
+import { EditComponent } from './products/form/edit.component';
 @NgModule({
   declarations: [
+    RootComponent,
     ItemComponent,
     ProductComponent,
     PageNotFoundComponent,
-    ShowComponent
+    ShowComponent,
+    FormComponent,
+    AddComponent,
+    EditComponent
   ],
+  entryComponents: [EditComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpModule,
     MdCardModule,
+    FormsModule,
+    ReactiveFormsModule,
     MdButtonModule,
+    MdDialogModule,
     MdGridListModule,
+    MdInputModule,
     MdCheckboxModule,
     MdListModule,
     NgbModule.forRoot()
   ],
-  providers: [],
-  bootstrap: [ProductComponent]
+  bootstrap: [RootComponent]
 })
 export class AppModule { }

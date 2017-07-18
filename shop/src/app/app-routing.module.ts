@@ -6,13 +6,14 @@ import { PageNotFoundComponent } from './page-not-found.component';
 const routes: Routes = [
   { path: '', redirectTo: '/products', pathMatch: 'full' },
   {
-    path: 'products',
+    path: 'products/:id',
     component: ProductComponent,
     data: { title: 'Product List' }
   },
   {
-    path: 'products/:id', component: ProductComponent,
-    data: { title: 'Product' }
+    path: 'products',
+    component: ProductComponent,
+    data: { title: 'Product List' }
   },
   { path: '**', component: PageNotFoundComponent }
 ];

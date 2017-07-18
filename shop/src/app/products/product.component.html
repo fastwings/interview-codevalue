@@ -4,7 +4,6 @@
     </nav>
 </header>
 <div class="productZone">
-
     <md-grid-list cols="2" rowHeight="2:1">
         <md-grid-tile>
             <div class="container">
@@ -15,14 +14,14 @@
                 </div>
                 <ul>
                     <li *ngFor="let item of products">
-                        <app-item [product]="item" (OnSelectProduct)="onSelectedProduct($event)"></app-item>
+                        <app-item [product]="item" (OnSelectProduct)="onSelectedProduct($event)" (OnDeleteProduct)="onDeleteProduct($event)"></app-item>
                     </li>
                 </ul>
             </div>
         </md-grid-tile>
         <md-grid-tile>
             <div class="topContiner">
-                <app-show [product]="selectedProduct"></app-show>
+                <app-show [product]="selectedProduct" (OnRequestUpdate)="onUpdate()"></app-show>
             </div>
         </md-grid-tile>
     </md-grid-list>

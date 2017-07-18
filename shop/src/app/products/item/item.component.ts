@@ -10,11 +10,16 @@ export class ItemComponent implements OnInit {
   public product: Product;
   @Output()
   public OnSelectProduct = new EventEmitter();
+  @Output()
+  public OnDeleteProduct = new EventEmitter();
   constructor() { }
 
   ngOnInit() {
   }
-  onProductClick(selectedProduct) {
+  onProductSelectClick(selectedProduct) {
     this.OnSelectProduct.emit(selectedProduct);
+  }
+  onProductDeleteClick(selectedProduct) {
+    this.OnDeleteProduct.emit(selectedProduct);
   }
 }

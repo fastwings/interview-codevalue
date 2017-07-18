@@ -30,4 +30,16 @@ export class ProductService extends CommonServer {
     });
   }
 
+  deleteProduct(productId) {
+    return this.Request(RequestMethod.DELETE, this.uri + '/' + productId, {});
+  }
+
+  updateProduct(productId, name, description, price) {
+    return this.Request(RequestMethod.PUT, this.uri + '/' + productId, {
+      id: productId, name, description, price
+    });
+  }
+
+
+
 }
