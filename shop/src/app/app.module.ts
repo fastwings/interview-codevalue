@@ -8,7 +8,7 @@ import { ItemComponent } from './products/item/item.component';
 import { ProductComponent } from './products/product.component';
 import { PageNotFoundComponent } from './page-not-found.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MdDialogModule, MdCardModule, MdButtonModule, MdCheckboxModule, MdListModule, MdGridListModule, MdInputModule } from '@angular/material';
+import { MdDialogModule, MdCardModule, MdPaginatorModule, MdButtonModule, MdCheckboxModule, MdListModule, MdGridListModule, MdInputModule } from '@angular/material';
 import { ShowComponent } from './products/show/show.component';
 import { RootComponent } from './root/root.component';
 import { FormComponent } from './products/form/form.component';
@@ -38,6 +38,7 @@ import { EditComponent } from './products/form/edit.component';
     MdDialogModule,
     MdGridListModule,
     MdInputModule,
+    MdPaginatorModule,
     MdCheckboxModule,
     MdListModule,
     NgbModule.forRoot()

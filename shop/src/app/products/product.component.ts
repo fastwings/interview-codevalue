@@ -16,7 +16,9 @@ import { AddComponent } from "./form/add.component";
 })
 export class ProductComponent implements OnInit {
   products: Array<Product>;
-
+  private page = 1;
+  private perPageLimit = 5;
+  private perPageLimitDefinitions = [5, 10, 25, 100];
   private selectedProduct: Product;
   private productId;
   private sub;
@@ -74,9 +76,14 @@ export class ProductComponent implements OnInit {
       this.updateProducts();
     });
   }
+  onPageSelect($event) {
+    this.page = $event.pageIndex + 1;
+    this.perPageLimit = $event.pageSize;
+    this.updateProducts();
+  }
   updateProducts() {
     this.products = [];
-    this.service.getProducts().subscribe(data => {
+    this.service.getProducts(this.page, this.perPageLimit).subscribe(data => {
       this.products = data;
     });
 

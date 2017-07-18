@@ -15,8 +15,8 @@ export class ProductService extends CommonServer {
   constructor(public http: Http) {
     super(http);
   }
-  getProducts() {
-    return this.Request(RequestMethod.GET, this.uri, {}).map(items => {
+  getProducts(page, limit) {
+    return this.Request(RequestMethod.GET, this.uri + '/?p=' + page + '&l=' + limit, {}).map(items => {
       return _.map(items, item => {
         return new Product(item.id, item.name, item.description, item.price, item.image, item.createAt);
       })

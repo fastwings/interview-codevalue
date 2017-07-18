@@ -12,10 +12,14 @@
                     <h1 *ngIf="selectedId">Product #{{selectedId}}</h1>
                     <button (click)="onAdd()" class="btn btn-primary">Add</button>
                 </div>
+
+                <md-paginator [length]="100" [pageSize]="perPageLimit" [pageSizeOptions]="perPageLimitDefinitions" (page)="onPageSelect($event)">
+                </md-paginator>
                 <ul>
                     <li *ngFor="let item of products">
                         <app-item [product]="item" (OnSelectProduct)="onSelectedProduct($event)" (OnDeleteProduct)="onDeleteProduct($event)"></app-item>
                     </li>
+                    <li *ngIf="products.length == 0">No Items Found</li>
                 </ul>
             </div>
         </md-grid-tile>
