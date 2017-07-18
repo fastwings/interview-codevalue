@@ -5,6 +5,8 @@ import { Observable } from 'rxjs/Observable';
 import { Product } from "../models/product";
 import { ProductService } from '../services/product.service';
 import { ActivatedRoute, Router, ParamMap } from "@angular/router";
+import { MdDialog } from "@angular/material";
+import { AddComponent } from "./form/add.component";
 
 @Component({
   selector: 'app-product',
@@ -21,7 +23,8 @@ export class ProductComponent implements OnInit {
   constructor(
     private service: ProductService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    public dialog: MdDialog
   ) { }
 
   ngOnInit() {
@@ -59,7 +62,18 @@ export class ProductComponent implements OnInit {
       })
     }
   }
-
+  onAdd() {
+    let dialogRef = this.dialog.open(AddComponent, {
+      height: '400px',
+      width: '600px',
+      hasBackdrop: true,
+      data: {
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.updateProducts();
+    });
+  }
   updateProducts() {
     this.products = [];
     this.service.getProducts().subscribe(data => {

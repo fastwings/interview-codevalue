@@ -25,7 +25,7 @@ import { EditComponent } from './products/form/edit.component';
     AddComponent,
     EditComponent
   ],
-  entryComponents: [EditComponent],
+  entryComponents: [EditComponent, AddComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

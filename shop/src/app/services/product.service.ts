@@ -34,6 +34,10 @@ export class ProductService extends CommonServer {
     return this.Request(RequestMethod.DELETE, this.uri + '/' + productId, {});
   }
 
+  addProduct(name, description, price) {
+    return this.Request(RequestMethod.POST, this.uri, { name, description, price });
+  }
+
   updateProduct(productId, name, description, price) {
     return this.Request(RequestMethod.PUT, this.uri + '/' + productId, {
       id: productId, name, description, price

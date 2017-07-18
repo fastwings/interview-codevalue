@@ -10,7 +10,7 @@
                 <div class="starter-template">
                     <h1 *ngIf="!selectedId">Product List</h1>
                     <h1 *ngIf="selectedId">Product #{{selectedId}}</h1>
-
+                    <button (click)="onAdd()" class="btn btn-primary">Add</button>
                 </div>
                 <ul>
                     <li *ngFor="let item of products">
