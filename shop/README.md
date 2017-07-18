@@ -26,3 +26,19 @@ Before running the tests make sure you are serving the app via `ng serve`.
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+
+
+## Inter view task
+
+
+
+1. The product list should be persisted to local storage automatically upon adding,
+
+editing or removing a product. The list should be loaded automatically when the
+
+page loads. -  for lack on time didn't have time handle this issue i think at first do thu this plugin =>https://www.npmjs.com/package/angular-persistence
+
+2. there two routes in the system products and products/:id
+
+

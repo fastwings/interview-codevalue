@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Product } from "../../models/product";
 import { MdDialog, MdDialogRef } from '@angular/material';
 import { EditComponent } from "../form/edit.component";
+import { environment } from '../../../environments/environment';
 @Component({
   selector: 'app-show',
   templateUrl: './show.component.html',
@@ -13,6 +14,7 @@ export class ShowComponent implements OnInit {
   public product: Product;
   @Output()
   public OnRequestUpdate = new EventEmitter();
+  private image = environment.staticImage;
   constructor(public dialog: MdDialog) { }
 
   ngOnInit() {

@@ -19,8 +19,11 @@ export class ProductComponent implements OnInit {
   private page = 1;
   private perPageLimit = 5;
   private perPageLimitDefinitions = [5, 10, 25, 100];
+  private sortByOptions = [{ name: "Create By", key: "createdAt" }, { name: "Price", key: "price" }, { name: "Name", key: "name" }];
+  private sortBy = this.sortByOptions[0]['key'];
   private selectedProduct: Product;
   private productId;
+  private searchByName = '';
   private sub;
   constructor(
     private service: ProductService,
@@ -42,7 +45,8 @@ export class ProductComponent implements OnInit {
     });
   }
   onSelectedProduct(selectProduct) {
-    this.selectedProduct = selectProduct;
+    //this.selectedProduct = selectProduct;
+    this.router.navigateByUrl(`products/${selectProduct.Id}`);
   }
 
   onDeleteProduct(product) {
@@ -56,11 +60,22 @@ export class ProductComponent implements OnInit {
       }
     })
   }
+  onSearchByName($event) {
+    //getProductsByName
+    if ($event.target.value.length >= 3) {
+      console.log($event.target.value, $event);
+      this.products = [];
+      this.service.getProductsByName(this.sortBy, $event.target.value, this.page, this.perPageLimit).subscribe(data => {
+        this.products = data;
+      });
+    }
+  }
   onUpdate() {
     this.updateProducts();
     if (this.selectedProduct) {
       this.service.getProduct(this.productId).subscribe(data => {
-        this.selectedProduct = data;
+        //this.selectedProduct = data;
+        this.router.navigateByUrl(`products/${this.productId}`);
       })
     }
   }
@@ -76,6 +91,9 @@ export class ProductComponent implements OnInit {
       this.updateProducts();
     });
   }
+  onUpdatePage() {
+    this.updateProducts();
+  }
   onPageSelect($event) {
     this.page = $event.pageIndex + 1;
     this.perPageLimit = $event.pageSize;
@@ -83,7 +101,7 @@ export class ProductComponent implements OnInit {
   }
   updateProducts() {
     this.products = [];
-    this.service.getProducts(this.page, this.perPageLimit).subscribe(data => {
+    this.service.getProducts(this.sortBy, this.page, this.perPageLimit).subscribe(data => {
       this.products = data;
     });
 

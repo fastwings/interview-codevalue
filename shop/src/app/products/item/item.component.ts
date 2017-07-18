@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Product } from "../../models/product";
+import { environment } from '../../../environments/environment';
 @Component({
   selector: 'app-item',
   templateUrl: './item.component.html',
@@ -12,6 +13,7 @@ export class ItemComponent implements OnInit {
   public OnSelectProduct = new EventEmitter();
   @Output()
   public OnDeleteProduct = new EventEmitter();
+  private image = environment.staticImage;
   constructor() { }
 
   ngOnInit() {

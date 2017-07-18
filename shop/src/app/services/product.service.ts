@@ -8,6 +8,7 @@ import { environment } from '../../environments/environment';
 import { RequestMethod, CommonServer } from './CommonService';
 import _ from 'lodash';
 import { Product } from "../models/product";
+import * as moment from 'moment';
 @Injectable()
 export class ProductService extends CommonServer {
 
@@ -15,18 +16,29 @@ export class ProductService extends CommonServer {
   constructor(public http: Http) {
     super(http);
   }
-  getProducts(page, limit) {
-    return this.Request(RequestMethod.GET, this.uri + '/?p=' + page + '&l=' + limit, {}).map(items => {
-      return _.map(items, item => {
-        return new Product(item.id, item.name, item.description, item.price, item.image, item.createAt);
-      })
 
+  getProducts(sortBy, page, limit) {
+    return this.Request(RequestMethod.GET, this.uri + `/?p=${page}&l=${limit}&sortBy=${sortBy}&order=desc`, {}).map(items => {
+      return _.map(items, item => {
+        const dateTime = moment(item.createdAt);
+        return new Product(item.id, item.name, item.description, item.price, item.image, dateTime.format('dddd, MMMM Do YYYY, h:mm:ss a'));
+      })
+    });
+  }
+
+  getProductsByName(sortBy, name, page, limit) {
+    return this.Request(RequestMethod.GET, this.uri + `/?p=${page}&l=${limit}&sortBy=${sortBy}&order=desc&search=${name}`, {}).map(items => {
+      return _.map(items, item => {
+        const dateTime = moment(item.createdAt);
+        return new Product(item.id, item.name, item.description, item.price, item.image, dateTime.format('dddd, MMMM Do YYYY, h:mm:ss a'));
+      })
     });
   }
 
   getProduct(productId) {
     return this.Request(RequestMethod.GET, this.uri + '/' + productId, {}).map(item => {
-      return new Product(item.id, item.name, item.description, item.price, item.image, item.createAt);
+      const dateTime = moment(item.createdAt);
+      return new Product(item.id, item.name, item.description, item.price, item.image, dateTime.format('dddd, MMMM Do YYYY, h:mm:ss a'));
     });
   }
 
@@ -43,7 +55,4 @@ export class ProductService extends CommonServer {
       id: productId, name, description, price
     });
   }
-
-
-
 }
